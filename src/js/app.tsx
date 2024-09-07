@@ -1,38 +1,30 @@
-import React, { useState}  from 'react';
-import ReactDOM from 'react-dom/client';
+import React  from 'react';
 import {
-  RouterProvider,
-  createBrowserRouter,
+  BrowserRouter,
+  Route,
+  Routes,
 } from 'react-router-dom';
+import { 
+  Heading,
+  Section,
+} from '@radix-ui/themes';
 
-import RootPage from './routes/root';
 import LoginPage from './routes/login';
-
-const router = createBrowserRouter([
-  {
-    path: '/',
-    element: <RootPage />,
-  },
-  {
-    path: '/login',
-    element: <LoginPage />,
-  },
-]);
+import Menu from './components/menu';
+import RootPage from './routes/root';
 
 export default function App() {
   return (
-    <RouterProvider router={router} />
+    <BrowserRouter>
+      <Menu />
+      <Section>
+        <Heading size="8">Remote Unlock</Heading>
+      </Section>
+      <Routes>
+        <Route path="/" element={<RootPage />}/>
+        <Route path="/login" element={<LoginPage />}/>
+      </Routes>
+    </BrowserRouter>
   );
 }
-
-
-// root.render(
-//   <React.StrictMode>
-//     <ThemeProviderWrapper attribute="class">
-//       <Theme>
-//         <RouterProvider router={router} />
-//       </Theme>
-//     </ThemeProviderWrapper>
-//   </React.StrictMode>
-// );
 

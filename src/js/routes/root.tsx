@@ -6,13 +6,12 @@ export default function RootPage() {
 
   useEffect(() => {
     // TODO: Check if user is logged in
-    navigate('/login');
+    // navigate('/login');
     return () => {}
   }, []);
 
   return (
     <>
-      <h1>Remote Unlock</h1>
     </>
   );
 }

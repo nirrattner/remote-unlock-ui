@@ -17,7 +17,7 @@ export default function App() {
   return (
     <BrowserRouter>
       <Menu />
-      <Section>
+      <Section size="1" pb="80px">
         <Heading size="8">Remote Unlock</Heading>
       </Section>
       <Routes>

@@ -14,33 +14,17 @@ import { InfoCircledIcon } from '@radix-ui/react-icons'
 import * as auth from '../lib/auth';
 import * as remoteUnlockApi from '../api/remoteUnlockApi';
 
+import ErrorCallout from '../components/errorCallout';
+
 import '../../css/login.css';
-
-function getErrorCallout(errorMessage: string) {
-  if (errorMessage === '') {
-    return null;
-  }
-
-  return (
-    <>
-      <Callout.Root color="red">
-        <Callout.Icon>
-          <InfoCircledIcon />
-        </Callout.Icon>
-        <Callout.Text>
-          {errorMessage}
-        </Callout.Text>
-      </Callout.Root>
-    </>
-  );
-}
 
 export default function LoginPage() {
   const navigate = useNavigate();
-  const [password, setPassword] = useState('');
-  const [errorMessage, setErrorMessage] = useState('');
+  const [password, setPassword] = useState<string>('');
+  const [errorMessage, setErrorMessage] = useState<string>('');
 
-  const onLoginClick = async () => {
+  async function onSubmit(event: React.FormEvent) {
+    event.preventDefault();
     setErrorMessage('');
     try {
       const response = await remoteUnlockApi.login(password);
@@ -65,17 +49,19 @@ export default function LoginPage() {
   return (
     <>
       <Container align="center" size="1">
-        <Flex direction="column" gap="3">
-          <TextField.Root 
-              placeholder="Password" 
-              size="3" 
-              type="password"
-              value={password}
-              onChange={onPasswordChange}
-            />
-          <Button size="3" onClick={onLoginClick}>Login</Button>
-          {getErrorCallout(errorMessage)}
-        </Flex>
+        <form onSubmit={onSubmit}>
+          <Flex direction="column" gap="5">
+              <TextField.Root 
+                  placeholder="Password" 
+                  size="3" 
+                  type="password"
+                  value={password}
+                  onChange={onPasswordChange}
+                />
+              <Button size="3" type="submit">Login</Button>
+            <ErrorCallout errorMessage={errorMessage} />
+          </Flex>
+        </form>
       </Container>
     </>
   );

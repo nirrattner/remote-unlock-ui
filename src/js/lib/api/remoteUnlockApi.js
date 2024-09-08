@@ -1,9 +1,12 @@
 import * as doorModel from '../model/door';
 
-import * as auth from '../lib/auth';
+import * as auth from '../auth';
 
 const URL = 'http://127.0.0.1:8080'
 const TOKEN_HEADER_KEY = 'X-REMOTE-UNLOCK-TOKEN'
+
+const PING_COMMAND_ID = 1;
+const UNLOCK_COMMAND_ID = 2;
 
 export async function login(password: string)  {
   const token = await auth.generateToken(password);
@@ -35,15 +38,23 @@ export async function getDoors() {
   });
 };
 
-export async function ping()  {
+export async function unlockDoor(doorId: string) {
   const token = await auth.generateToken(auth.getKey());
-  return fetch(`${URL}/login`, {
+  return fetch(`${URL}/command`, {
     mode: 'cors',
     method: 'POST',
     headers: {
       'content-type': 'application/json',
       [TOKEN_HEADER_KEY]: token,
     },
+    body: JSON.stringify({
+      'command': {
+        'type': UNLOCK_COMMAND_ID,
+        'arguments': {
+          'door': Number(doorId),
+        },
+      },
+    }),
   });
 };
 

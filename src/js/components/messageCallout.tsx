@@ -1,19 +1,24 @@
 import { Callout } from '@radix-ui/themes';
 import { InfoCircledIcon } from '@radix-ui/react-icons'
 
-export default function ErrorCallout({ errorMessage }: { errorMessage: string}) {
-  if (errorMessage === '') {
+type MessageCalloutProps = {
+  color: "green" | "red",
+  message: string,
+}
+
+export default function MessageCallout({ color, message }: MessageCalloutProps) {
+  if (message === '') {
     return null;
   }
 
   return (
     <>
-      <Callout.Root color="red">
+      <Callout.Root color={color}>
         <Callout.Icon>
           <InfoCircledIcon />
         </Callout.Icon>
         <Callout.Text>
-          {errorMessage}
+          {message}
         </Callout.Text>
       </Callout.Root>
     </>

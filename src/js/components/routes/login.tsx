@@ -11,12 +11,10 @@ import {
 } from '@radix-ui/themes';
 import { InfoCircledIcon } from '@radix-ui/react-icons'
 
-import * as auth from '../lib/auth';
-import * as remoteUnlockApi from '../api/remoteUnlockApi';
+import * as auth from '../../lib/auth';
+import * as remoteUnlockApi from '../../lib/api/remoteUnlockApi';
 
-import ErrorCallout from '../components/errorCallout';
-
-import '../../css/login.css';
+import MessageCallout from '../messageCallout';
 
 export default function LoginPage() {
   const navigate = useNavigate();
@@ -59,7 +57,7 @@ export default function LoginPage() {
                   onChange={onPasswordChange}
                 />
               <Button size="3" type="submit">Login</Button>
-            <ErrorCallout errorMessage={errorMessage} />
+          <MessageCallout message={errorMessage} color="red" />
           </Flex>
         </form>
       </Container>

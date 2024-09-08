@@ -10,15 +10,15 @@ export async function generateToken(key: string) : Promise<string> {
   const encodedKey = encoder.encode(key);
 
   const cryptoKey = await window.crypto.subtle.importKey(
-    "raw",
+    'raw',
     encodedKey,
-    { name: "HMAC", hash: "SHA-256" },
+    { name: 'HMAC', hash: 'SHA-256' },
     false,
-    ["sign"]
+    ['sign'],
   );
 
   const signature = await window.crypto.subtle.sign(
-    "HMAC",
+    'HMAC',
     cryptoKey,
     encodedTokenBody,
   );

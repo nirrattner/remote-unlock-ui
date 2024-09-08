@@ -9,16 +9,16 @@ import {
   Section,
 } from '@radix-ui/themes';
 
-import LoginPage from './routes/login';
+import LoginPage from './components/routes/login';
 import Menu from './components/menu';
-import RootPage from './routes/root';
+import RootPage from './components/routes/root';
 
 export default function App() {
   return (
     <BrowserRouter>
       <Menu />
       <Section size="1" pb="80px">
-        <Heading size="8">Remote Unlock</Heading>
+        <Heading align="center" size="8">Remote Unlock</Heading>
       </Section>
       <Routes>
         <Route path="/" element={<RootPage />}/>

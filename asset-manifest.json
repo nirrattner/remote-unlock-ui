@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/remote-unlock-ui/static/css/main.6e6b5561.css",
-    "main.js": "/remote-unlock-ui/static/js/main.09820b5a.js",
+    "main.js": "/remote-unlock-ui/static/js/main.e45a70a8.js",
     "index.html": "/remote-unlock-ui/index.html",
     "main.6e6b5561.css.map": "/remote-unlock-ui/static/css/main.6e6b5561.css.map",
-    "main.09820b5a.js.map": "/remote-unlock-ui/static/js/main.09820b5a.js.map"
+    "main.e45a70a8.js.map": "/remote-unlock-ui/static/js/main.e45a70a8.js.map"
   },
   "entrypoints": [
     "static/css/main.6e6b5561.css",
-    "static/js/main.09820b5a.js"
+    "static/js/main.e45a70a8.js"
   ]
 }

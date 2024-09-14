@@ -2,8 +2,8 @@ import * as doorModel from '../model/door';
 
 import * as auth from '../auth';
 
-const URL = 'http://127.0.0.1:8080'
-const TOKEN_HEADER_KEY = 'X-REMOTE-UNLOCK-TOKEN'
+const URL = 'https://remote-unlock-00e20d92a0c5.herokuapp.com';
+const TOKEN_HEADER_KEY = 'X-REMOTE-UNLOCK-TOKEN';
 
 const PING_COMMAND_ID = 1;
 const UNLOCK_COMMAND_ID = 2;

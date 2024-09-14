@@ -15,7 +15,7 @@ import RootPage from './components/routes/root';
 
 export default function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={process.env.PUBLIC_URL}>
       <Menu />
       <Section size="1" pb="80px">
         <Heading align="center" size="8">Remote Unlock</Heading>

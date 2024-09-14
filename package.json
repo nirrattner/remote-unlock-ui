@@ -1,6 +1,7 @@
 {
   "name": "remote-unlock-ui",
   "version": "0.1.0",
+  "homepage": "https://nirrattner.github.io/remote-unlock-ui/",
   "private": true,
   "dependencies": {
     "@radix-ui/react-form": "^0.1.0",

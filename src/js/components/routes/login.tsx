@@ -46,7 +46,7 @@ export default function LoginPage() {
 
   return (
     <>
-      <Container align="center" size="1">
+      <Container align="center" size="1" px="3">
         <form onSubmit={onSubmit}>
           <Flex direction="column" gap="5">
               <TextField.Root 

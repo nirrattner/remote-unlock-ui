@@ -15,6 +15,7 @@ import * as doorModel from '../../lib/model/door';
 import * as remoteUnlockApi from '../../lib/api/remoteUnlockApi';
 
 import MessageCallout from '../messageCallout';
+import FixedSelect from '../fixedSelect';
 
 const SELECTED_DOOR_ID_KEY = 'selected-door-id-key';
 
@@ -139,7 +140,7 @@ export default function RootPage() {
     return (
       <>
         <Heading>Choose Door</Heading>
-        <Select.Root
+        <FixedSelect
             value={selectedDoorId} 
             onValueChange={onSelectDoorId}
             size="3"
@@ -149,7 +150,7 @@ export default function RootPage() {
           <Select.Content>
             {doorSelectItems}
           </Select.Content>
-        </Select.Root>
+        </FixedSelect>
         <Button size="3" disabled={isSubmitting}>Unlock</Button>
       </>
     );
@@ -157,7 +158,7 @@ export default function RootPage() {
 
   return (
     <>
-      <Container align="center" size="1">
+      <Container align="center" size="1" px="3">
           <Flex justify="center">
             <Spinner size="3" loading={isLoading} />
           </Flex>

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { 
   Button,
@@ -18,6 +18,7 @@ import MessageCallout from '../messageCallout';
 import FixedSelect from '../fixedSelect';
 
 const SELECTED_DOOR_ID_KEY = 'selected-door-id-key';
+const UNLOCK_TIMEOUT = 3000;
 
 function capitalizeFirstLetter(value: string) : string {
     return value.charAt(0).toUpperCase() + value.slice(1).toLowerCase();
@@ -31,6 +32,8 @@ export default function RootPage() {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
   const [selectedDoorId, setSelectedDoorId] = useState<string>('');
+
+  const resultMessageTimeoutRef = useRef<number>(0);
 
   useEffect(() => {
     remoteUnlockApi.getDoors()
@@ -92,6 +95,10 @@ export default function RootPage() {
         return;
       }
       setResultMessage('Unlocked!');
+
+      resultMessageTimeoutRef.current = window.setTimeout(() => {
+        setResultMessage('');
+      }, UNLOCK_TIMEOUT);
     } catch (error: any) {
       setIsSubmitting(false);
       console.error(error);
@@ -102,6 +109,11 @@ export default function RootPage() {
   function onSelectDoorId(value: string) {
     setErrorMessage('');
     setResultMessage('');
+
+    if (resultMessageTimeoutRef.current) {
+      window.clearTimeout(resultMessageTimeoutRef.current);
+      resultMessageTimeoutRef.current = 0;
+    }
 
     localStorage.setItem(SELECTED_DOOR_ID_KEY, value);
     setSelectedDoorId(value);

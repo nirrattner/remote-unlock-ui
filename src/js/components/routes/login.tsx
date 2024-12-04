@@ -26,13 +26,13 @@ export default function LoginPage() {
     setErrorMessage('');
     try {
       const response = await remoteUnlockApi.login(password);
-      const responseJson = await response.json();
-
       if (response.ok) {
         auth.setKey(password);
         navigate('/');
         return;
       }
+
+      const responseJson = await response.json();
       setErrorMessage(responseJson['error']);
     } catch (error: any) {
       console.error(error);
